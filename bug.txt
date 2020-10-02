@@ -1,0 +1,5 @@
+1. bug dynamicpreprocessor >> buka snort.conf 
+    cp dulu file snort_dynamicpreprosessor dari /usr/lib => /usr/local
+    tekan ctrl + w terus cari dynamic
+    ubah data yang berawal "/usr/lib/snort_dynamicpreprocessor/"
+    menjadi "/usr/local/lib/snort_dynamicpreprocessor"
