@@ -1,17 +1,8 @@
-cd /etc/snort/
-
-ls >> output terdapat folder rules dan file snort.conf
-1. nano snort.conf
-2. di bawah tulisan "/etc/snort/snort.debian.conf configuration file"
-   ditulis "ipvar HOME_NET any" atau "ipvar HOME_NET 192.168.1.0/24"
-3. kebawah lagi
-4. di atas tulisan "# Step #2 : Configure the decoder. for more information decode"
-   ditulis "include $RULE_PATH/custom.rules" %%%memasukan RULE CUSTOM di path /etc/snort/rules/custom.rules
-5. keluar nano
-
-lalu cd /rules
-1.nano custom.rules
-2. isi nya custom.rules seperti dibawah ini
+nano /etc/snort/snort.conf
+HOME NET >> "ipvar HOME_NET any" atau "ipvar HOME_NET 192.168.1.0/24"
+di atas tulisan "Step #2"
+ditulis "include $RULE_PATH/peraturanku.rules" %%%memasukan RULE CUSTOM di path /etc/snort/rules/custom.rules
+nano /etc/snort/rules/peraturanku.rules
 #########################################################################################################
 #CARA Penulisan 
 #=> *rule *protocol *source ip *source port *OPERATOR *destinasi ip *destinasi port (option)
@@ -30,11 +21,18 @@ lalu cd /rules
 #             2.payload
 #             3.non-payload
 #             4.post-detection
+#=> Penulisan Option didalam () 
+#     dsize = ukuran paket
+#     count = jumlah terjadinya kejadian
+#     second = periode waktu penghitungan kejadian yang telah terjadi
+
 
 #alert terserah
 alert tcp any any -> $HOME_NET 21 (msg:"terdapat aktivitas FTP bos ku"; sid:1000001; rev:1;)
+
 #alert spesifik ip ssh connection
 alert tcp any any -> 192.168.1.79 22 (msg:"terdapat aktivitas pada SSH bos ku"; sid:1000002; rev:1;)
+
 #alert spesifik website
 alert tcp any any -> $EXTERNAL_NET $HTTP_PORTS (msg:"aktivitas web"; content:"toni.com"; nocase; sid:1000003; rev:1;>
 #######################################################################################################
