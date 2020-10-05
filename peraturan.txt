@@ -1,0 +1,24 @@
+#alert tcp
+alert tcp any any -> $HOME_NET 21 (msg:"terdapat aktivitas FTP"; sid:1000001;rev:1;)
+
+#alert ssh
+alert tcp any any -> 192.168.1.52 22 (msg :"terdapat aktivitas SSH"; sid:1000002;rev :1;)
+
+#alert ping
+alert icmp any any -> 192.168.1.1 any (msg :"terdapat aktivitas PING di IP 192.168.1.1"; sid:1000003;rev:1; classtype:icmp-event;)
+
+#alert ftp gagal login
+alert tcp any any -> $HOME_NET 21 (msg :"Aktivitas FTP gagal Login"; sid:1000004;rev:1; content:"Login incorrect";)
+
+#alert akses website tertentu
+alert tcp any any -> $EXTERNAL_NET $HTTP_PORTS (msg :"terdapat aktivitas web"; content:"smktelkom-mlg.sch.id"; sid:1000005; rev:1;)
+
+#REJECT ping
+#reject icmp $EXTERNAL_NET any <> $HOME_NET any (msg :"PING memiliki paket > 65000"; dsize: >65000; sid:1000006; rev:1;)
+
+#Block ping server
+#block icmp $EXTERNAL_NET any <> 192.168.1.52 any (msg:"Block ping server";sid:1000007; rev:1;)
+
+#drop ping server
+#drop icmp any any <> 192.168.1.52 any (msg:"drop ping server";sid :1000008;rev:1;)
+
