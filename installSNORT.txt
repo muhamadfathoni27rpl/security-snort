@@ -1,7 +1,5 @@
 root@panic:~#
 apt-get install snort
-wget https://www.snort.org/downloads/snort/daq-2.0.7.tar.gz
-wget https://www.snort.org/downloads/snort/snort-2.9.16.1.tar.gz
 ========================
 apt-get install bison libpcap-dev make flex luajit libdumbnet-dev
 apt-get install libtool libtool-bin libpcre3 libpcre3-dev
